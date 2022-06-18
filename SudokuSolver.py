@@ -1,5 +1,6 @@
 import time
 import os
+import sys
 
 sudoku =[[5,3,0,0,7,0,0,0,0]
         ,[6,0,0,1,9,5,0,0,0]
@@ -41,8 +42,8 @@ def isPossibleToPlace(x,y,value):
     for i in range(9): #column check
         if (sudoku[i][y] == value):
             return False
-    x3x3grid = (x//3) * 3
-    y3x3grid = (y//3) * 3
+    x3x3grid = int(x/3) * 3
+    y3x3grid = int(y/3) * 3
     for a in range(3): #diagonal check
         for b in range(3):
             if (sudoku[x3x3grid + a][y3x3grid + b] == value):
@@ -75,13 +76,14 @@ def solveRecursive():
 
 print("\nTo Solve:")
 printSudoku()
+
 print("\nSolved:")
 
 start = round(time.time() * 1000)
 solveRecursive()
 end = round(time.time() * 1000)
+
 printSudoku()
 
 delta = end-start
-print()
-print("Time needed: " + str(delta) + "ms\n")
+print("\nTime needed: " + str(delta) + "ms\n")
