@@ -1,3 +1,5 @@
+import time
+
 sudoku =[[5,3,0,0,7,0,0,0,0]
         ,[6,0,0,1,9,5,0,0,0]
         ,[0,9,8,0,0,0,0,6,0]
@@ -49,12 +51,18 @@ def solveRecursive():
                 for value in range(1,10):
                     if (isPossibleToPlace(x,y,value)):
                         sudoku[x][y] = value
+                        printSudoku()
                         solveRecursive()
                         sudoku[x][y] = 0
                 return
     printSudoku()
 
-print("To Solve:")
+print("\nTo Solve:")
 printSudoku()
-print("Solved:")
+print("\nSolved:")
+start = round(time.time() * 1000)
 solveRecursive()
+end = round(time.time() * 1000)
+delta = end-start
+print()
+print("Time needed: " + str(delta) + "ms\n")
